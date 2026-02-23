@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>《耕织图》智慧博物馆 - 数字化交互设计方案</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入 Mermaid.js 用于渲染信息架构图 -->
+    <!-- 引入 Mermaid.js (保留引用以维持结构一致性) -->
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
@@ -15,7 +15,7 @@
             --vermilion: #B22D24;
             --ink: #2A2A2A;
             --slate-gray: #64748b;
-            /* 项目新增色彩规范 */
+            /* 项目指定色值 */
             --accent-red: #AC2425;
             --accent-blue: #0B437C;
             --accent-amber: #DACFB5;
@@ -58,83 +58,30 @@
             50% { transform: translateY(-20px) rotate3d(1, 1, 1, 2deg); }
             100% { transform: translateY(0px) rotate3d(1, 1, 1, 0deg); }
         }
-        @keyframes scrollUI {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-60%); }
-        }
 
         .animate-fade-up { animation: fadeInUp 1s ease-out forwards; }
         .animate-fade-left { animation: fadeInLeft 1s ease-out forwards; }
         .animate-float { animation: float 6s ease-in-out infinite; }
-        .ui-scroll { animation: scrollUI 12s linear infinite alternate; }
 
-        /* 模拟线框图组件 */
-        .wireframe-box { border: 1.5px solid #cbd5e1; background: #f8fafc; }
-        .wireframe-text { height: 8px; background: #e2e8f0; border-radius: 4px; }
-        
-        .seal {
-            width: 70px;
-            height: 70px;
-            border: 2px solid var(--vermilion);
-            color: var(--vermilion);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-family: 'Noto Serif SC';
-            transform: rotate(-15deg);
-            opacity: 0.5;
-            pointer-events: none;
-            font-size: 12px;
-            text-align: center;
-        }
-
-        /* 磨砂效果 */
-        .glass {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        /* Mermaid 图表自定义样式融合 */
-        .mermaid-container {
-            background: white;
-            padding: 40px 20px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(178, 45, 36, 0.05);
-            border: 1px solid rgba(178, 45, 36, 0.1);
-        }
-        .node rect, .node circle, .node polygon {
-            stroke-width: 2px !important;
-        }
-
-        /* 用户流程图 SVG 样式 */
-        .flow-node { transition: all 0.3s ease; cursor: default; }
-        .flow-node:hover { transform: translateY(-2px); filter: drop-shadow(0 4px 6px rgba(178, 45, 36, 0.1)); }
-        .decision-diamond { fill: #fff; stroke: var(--vermilion); stroke-width: 2; }
-        .process-rect { fill: #fff; stroke: #cbd5e1; stroke-width: 1.5; rx: 8; }
-        .feature-node { fill: var(--vermilion); rx: 12; }
-        .feature-text { fill: #ffffff; font-weight: bold; }
-        .connector-line { fill: none; stroke: #cbd5e1; stroke-width: 2; marker-end: url(#arrowhead); }
-
-        /* 手机模具样式：保持 280px 宽度，比例调整为 393*852 (Height = 607px) */
-        .phone-mockup {
-            width: 280px;
-            height: 607px; 
+        /* 统一模具样式：保持 iPhone 16 比例 (393:852)，宽度统一缩小至 210px */
+        .phone-mockup-mini {
+            width: 210px;
+            height: 455px; 
             background: #1a1a1a;
-            border-radius: 40px;
-            padding: 10px;
-            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.3);
+            border-radius: 30px;
+            padding: 8px;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
             position: relative;
             transform-style: preserve-3d;
             flex-shrink: 0;
             border: 1px solid #333;
         }
+
         .phone-screen {
             width: 100%;
             height: 100%;
             background: #F7F3EB;
-            border-radius: 32px;
+            border-radius: 28px;
             overflow: hidden;
             position: relative;
         }
@@ -179,30 +126,30 @@
 
     <!-- Header 区域 -->
     <header id="intro" class="pt-48 pb-32 px-10 overflow-hidden min-h-screen flex flex-col justify-center">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-            <div class="relative z-10">
-                <div class="flex items-center gap-4 mb-8 animate-fade-left" style="animation-delay: 0.1s">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center text-left">
+            <div class="relative z-10 text-left">
+                <div class="flex items-center gap-4 mb-8 animate-fade-left text-left" style="animation-delay: 0.1s">
                     <div class="w-8 h-[1px] bg-[#B22D24]"></div>
-                    <p class="text-[#B22D24] font-bold tracking-[0.4em] text-xs uppercase">Museum Interaction Design</p>
+                    <p class="text-[#B22D24] font-bold tracking-[0.4em] text-xs uppercase text-left">Museum Interaction Design</p>
                 </div>
-                <h1 class="serif text-6xl md:text-[5.5rem] font-bold mb-10 leading-[1.1] tracking-tight text-stone-800 animate-fade-left" style="animation-delay: 0.3s">
+                <h1 class="serif text-6xl md:text-[5.5rem] font-bold mb-10 leading-[1.1] tracking-tight text-stone-800 animate-fade-left text-left" style="animation-delay: 0.3s">
                     《耕织图》<br><span class="text-[#B22D24]">智慧</span>博物馆
                 </h1>
-                <div class="max-w-xl animate-fade-left" style="animation-delay: 0.5s">
-                    <p class="text-stone-500 text-lg md:text-xl font-light leading-relaxed mb-12 border-l-2 border-stone-200 pl-6">
+                <div class="max-w-xl animate-fade-left text-left" style="animation-delay: 0.5s">
+                    <p class="text-stone-500 text-lg md:text-xl font-light leading-relaxed mb-12 border-l-2 border-stone-200 pl-6 text-left">
                         基于 23 道农耕与蚕织工艺的数字化转译，通过身份智能判定系统，为用户打造沉浸式的中国传统生产美学体验。
                     </p>
                 </div>
-                <div class="flex gap-4 animate-fade-left" style="animation-delay: 0.7s">
+                <div class="flex gap-4 animate-fade-left">
                     <span class="px-4 py-1.5 rounded-full border border-stone-200 text-[10px] text-stone-400 font-bold tracking-widest uppercase">Digital Twin</span>
                     <span class="px-4 py-1.5 rounded-full border border-[#B22D24]/20 text-[10px] text-[#B22D24] font-bold tracking-widest uppercase">UX Portfolio</span>
                 </div>
             </div>
             <div class="relative flex justify-center lg:justify-end">
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#B22D24]/5 rounded-full blur-[80px]"></div>
-                <div class="phone-mockup animate-float">
+                <!-- 首页手机尺寸微调以匹配全站 Mini 风格但保持首页视觉中心感 -->
+                <div class="phone-mockup-mini animate-float scale-110">
                     <div class="phone-screen">
-                        <!-- 首页手机视频播放：shouye.mp4 -->
                         <video class="w-full h-full object-cover" autoplay muted loop playsinline>
                             <source src="shouye.mp4" type="video/mp4">
                         </video>
@@ -213,16 +160,16 @@
         </div>
         <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16 text-left mt-32 animate-fade-up">
             <div>
-                <h4 class="serif font-bold text-[#B22D24] text-lg mb-4">设计背景 / Background</h4>
-                <p class="text-xs text-stone-500 leading-loose">《耕织图》是记录中国古代农业技术的宝库，但其静态形式难以吸引年轻一代观众。我们需要一种新型的交互媒介。</p>
+                <h4 class="serif font-bold text-[#B22D24] text-lg mb-4 text-left">设计背景 / Background</h4>
+                <p class="text-xs text-stone-500 leading-loose text-left">《耕织图》是记录中国古代农业技术的宝库，但其静态形式难以吸引年轻一代观众。我们需要一种新型的交互媒介。</p>
             </div>
             <div>
-                <h4 class="serif font-bold text-[#B22D24] text-lg mb-4">核心痛点 / Painpoints</h4>
-                <p class="text-xs text-stone-500 leading-loose">知识门槛高（术语晦涩）、参与感弱（单纯看图）、视角单一（缺乏现代关联）。</p>
+                <h4 class="serif font-bold text-[#B22D24] text-lg mb-4 text-left">核心痛点 / Painpoints</h4>
+                <p class="text-xs text-stone-500 leading-loose text-left">知识门槛高（术语晦涩）、参与感弱（单纯看图）、视角单一（缺乏现代关联）。</p>
             </div>
             <div>
-                <h4 class="serif font-bold text-[#B22D24] text-lg mb-4">设计目标 / Objectives</h4>
-                <p class="text-xs text-stone-500 leading-loose">通过“身份角色化”降低准入门槛，利用“多模态交互”增强知识趣味性，建立个人情感链接。</p>
+                <h4 class="serif font-bold text-[#B22D24] text-lg mb-4 text-left">设计目标 / Objectives</h4>
+                <p class="text-xs text-stone-500 leading-loose text-left">通过“身份角色化”降低准入门槛，利用“多模态交互”增强知识趣味性，建立个人情感链接。</p>
             </div>
         </div>
     </header>
@@ -230,52 +177,50 @@
     <main class="max-w-6xl mx-auto px-6 pb-20 space-y-48">
 
         <!-- 00 设计流程闭环 -->
-        <section id="background-detail" class="section-fade-in">
-            <div class="flex items-center gap-4 mb-16">
-                <span class="text-5xl serif italic text-[#B22D24]/20 font-bold">00</span>
-                <h2 class="text-3xl font-bold serif">设计流程 / Context</h2>
+        <section id="background-detail" class="section-fade-in text-left">
+            <div class="flex items-center gap-4 mb-16 text-left">
+                <span class="text-5xl serif italic text-[#B22D24]/20 font-bold text-left">00</span>
+                <h2 class="text-3xl font-bold serif text-left">设计流程 / Context</h2>
             </div>
-            <div class="grid lg:grid-cols-2 gap-20">
-                <div class="space-y-10">
+            <div class="grid lg:grid-cols-2 gap-20 text-left">
+                <div class="space-y-10 text-left">
                     <div class="bg-white/40 p-8 rounded-3xl border border-stone-200 transition-all hover:bg-white/60">
-                        <h3 class="serif font-bold text-xl mb-6 text-[#B22D24]">策划核心：二元路径解构</h3>
-                        <div class="space-y-6 text-sm text-stone-600 leading-relaxed">
-                            <p><b class="text-stone-800">S (Situation)：</b> 博物馆展品信息过载且叙事单一，用户难以产生深层链接。</p>
-                            <p><b class="text-stone-800">T (Task)：</b> 将复杂的 23 道工序转化为可感知、可参与的数字系统。</p>
-                            <p><b class="text-stone-800">A (Action)：</b> 将工序拆解为<b>生产侧</b>（理性、钻研工艺原理）与<b>生活侧</b>（感性、追求情感共鸣），通过两种逻辑的设计缓解认知负担。</p>
+                        <h3 class="serif font-bold text-xl mb-6 text-[#B22D24] text-left">二元路径解构：从“生产”到“生活”</h3>
+                        <div class="space-y-5 text-sm text-stone-600 leading-relaxed text-left">
+                            <p>
+                                <span class="text-stone-800 font-bold text-left">受众分层：</span>
+                                调研发现博物馆受众存在明显的“知识探究”与“沉浸体验”需求差异。基于此，我们将《耕织图》23道工序解构为理性侧重的<b>生产侧（工艺原理）</b>与感性侧重的<b>生活侧（叙事共鸣）</b>双线。
+                            </p>
+                            <p>
+                                <span class="text-stone-800 font-bold text-left">设计价值：</span>
+                                这种拆解打破了传统的线性叙事，通过降低单一路径的信息密度，有效缓解了用户在面对复杂古画时的认知负荷与过载感。
+                            </p>
+                            <p>
+                                <span class="text-stone-800 font-bold text-left">交互原则：</span>
+                                坚持<b>“短路径”策略</b>，用户仅需极简点击即可触发多态交互（视、听、触联动），确保在游览过程中不牺牲连续性与沉浸感。
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col justify-center">
-                    <h3 class="serif font-bold text-xl mb-8">交互闭环策划</h3>
-                    <div class="space-y-4">
+                
+                <div class="flex flex-col justify-center text-left">
+                    <h3 class="serif font-bold text-xl mb-8 text-left">交互策划闭环</h3>
+                    <div class="space-y-4 text-left">
                         <div class="flex items-center gap-6 p-4 bg-white rounded-2xl border border-stone-100 shadow-sm relative overflow-hidden group">
-                            <div class="w-12 h-12 rounded-full bg-[#B22D24] text-white flex items-center justify-center font-bold italic group-hover:scale-110 transition-transform">01</div>
-                            <div>
-                                <h4 class="font-bold text-sm">入画注册</h4>
-                                <p class="text-[10px] text-stone-400">建立初始情感链接，进入数字化叙事</p>
-                            </div>
+                            <div class="w-12 h-12 rounded-full bg-[#B22D24] text-white flex items-center justify-center font-bold italic group-hover:scale-110 transition-transform text-center text-center">01</div>
+                            <div class="text-left"><h4 class="font-bold text-sm text-left">入画注册</h4><p class="text-[10px] text-stone-400 text-left">建立初始链接，开启数字化身份</p></div>
                         </div>
                         <div class="flex items-center gap-6 p-4 bg-white rounded-2xl border border-stone-100 shadow-sm transition-all hover:translate-x-1">
-                            <div class="w-12 h-12 rounded-full bg-[#B22D24] text-white flex items-center justify-center font-bold italic">02</div>
-                            <div>
-                                <h4 class="font-bold text-sm">身份智能判定</h4>
-                                <p class="text-[10px] text-stone-400">基于交互测试自动分发生产/生活路径</p>
-                            </div>
+                            <div class="w-12 h-12 rounded-full bg-[#B22D24] text-white flex items-center justify-center font-bold italic group-hover:scale-110 transition-transform text-center text-center text-center">02</div>
+                            <div class="text-left"><h4 class="font-bold text-sm text-left">身份智能判定</h4><p class="text-[10px] text-stone-400 text-left text-left">基于知识/体验分层智能推荐路径</p></div>
                         </div>
                         <div class="flex items-center gap-6 p-4 bg-white rounded-2xl border border-stone-100 shadow-sm transition-all hover:translate-x-1">
-                            <div class="w-12 h-12 rounded-full bg-[#B22D24] text-white flex items-center justify-center font-bold italic">03</div>
-                            <div>
-                                <h4 class="font-bold text-sm">AR 识别判定</h4>
-                                <p class="text-[10px] text-stone-400">实物扫描触发动态孪生影像</p>
-                            </div>
+                            <div class="w-12 h-12 rounded-full bg-[#B22D24] text-white flex items-center justify-center font-bold italic group-hover:scale-110 transition-transform text-center text-center text-center text-center">03</div>
+                            <div class="text-left"><h4 class="font-bold text-sm text-left text-left text-left">工序探索</h4><p class="text-[10px] text-stone-400 text-left text-left text-left">多模态多态交互，深度解构工艺</p></div>
                         </div>
-                        <div class="flex items-center gap-6 p-4 bg-[#B22D24] text-white rounded-2xl shadow-lg shadow-[#B22D24]/20 relative overflow-hidden group">
-                            <div class="w-12 h-12 rounded-full bg-white/20 text-white flex items-center justify-center font-bold italic group-hover:scale-110 transition-transform">04</div>
-                            <div>
-                                <h4 class="font-bold text-sm">数字资产生成</h4>
-                                <p class="text-[10px] opacity-70">游览数据转化为个性化“成衣”数字档案</p>
-                            </div>
+                        <div class="flex items-center gap-6 p-4 bg-[#B22D24] text-white rounded-2xl shadow-lg shadow-[#B22D24]/20 relative overflow-hidden group text-center text-center text-center text-center">
+                            <div class="w-12 h-12 rounded-full bg-white/20 text-white flex items-center justify-center font-bold italic group-hover:scale-110 transition-transform text-center text-center text-center text-center text-center">04</div>
+                            <div class="text-left"><h4 class="font-bold text-sm text-left text-left">数字资产生成</h4><p class="text-[10px] opacity-70 text-left text-left">将游览体验转化为专属数字资产档案</p></div>
                         </div>
                     </div>
                 </div>
@@ -283,354 +228,159 @@
         </section>
 
         <!-- 01 信息架构 (Information Architecture) -->
-        <section id="arch" class="section-fade-in">
-            <div class="flex items-center gap-4 mb-16">
-                <span class="text-5xl serif italic text-[#B22D24]/20 font-bold">01</span>
-                <h2 class="text-3xl font-bold serif">信息架构 (Information Architecture)</h2>
+        <section id="arch" class="section-fade-in text-left">
+            <div class="flex items-center gap-4 mb-16 text-left">
+                <span class="text-5xl serif italic text-[#B22D24]/20 font-bold text-left">01</span>
+                <h2 class="text-3xl font-bold serif text-left">信息架构 (Information Architecture)</h2>
             </div>
-            <div class="mermaid-container overflow-x-auto text-center">
-                <pre class="mermaid">
-graph TD
-    Root((耕织图 APP))
-    Home[01 主页模块 Home]
-    Gallery[02 展厅模块 Gallery]
-    Collection[03 物品栏模块 Collection]
-    Profile[04 个人主页 Profile]
-    Root --> Home
-    Root --> Gallery
-    Root --> Collection
-    Root --> Profile
-    Home --> H_Brand[品牌与导览入口]
-    Home --> H_Logic[核心逻辑层]
-    H_Logic --> H_Reg[身份注册 Action]
-    H_Logic --> H_AI[智能判定节点 AI]
-    H_AI --> H_Path[路径推荐]
-    H_Path --> H_Choose[自主选择]
-    H_Choose --> H_Prod[生产侧路径]
-    H_Choose --> H_Life[生活侧路径]
-    Gallery --> G_Map[23步地图索引层]
-    Gallery --> G_Node[核心体验节点:织]
-    G_Node --> G_AR[AR 扫描探索 - 核心交互]
-    G_AR --> G_AR1[识别判定]
-    G_AR --> G_AR2[成果解锁]
-    G_Node --> G_Multi[多模态内容层]
-    G_Multi --> G_Audio[音频讲解]
-    G_Multi --> G_Game[任务与游戏 - 含跳过机制]
-    G_Node --> G_Switch[双轨叙事切换器 Perspective Switch]
-    G_Switch --> G_Comp[补齐另一视角内容]
-    G_Comp --> G_QA[简易卡片问答交互]
-    G_QA --> G_Return{逻辑回归：返回生产侧}
-    Collection --> C_StateA[状态A: 未游览态]
-    C_StateA --> C_Guide[引导提示 - 空状态设计]
-    Collection --> C_StateB[状态B: 已收集态]
-    C_StateB --> C_Archive[工序节点存档 Step Items]
-    C_StateB --> C_Output[核心产出: 专属成衣卡片]
-    C_Output --> C_Data[基于多维交互数据生成]
-    C_Output --> C_Share[下载与分享组件]
-    Profile --> P_Archive[成长档案与勋章]
-    Profile --> P_History[游览历史记录]
-    style Root fill:#B22D24,stroke:#8C2721,color:#fff,stroke-width:3px,font-size:20px;
-    classDef mainNode fill:#F9F2E7,stroke:#B22D24,color:#2A2A2A,font-weight:bold,stroke-width:2px,font-size:18px;
-    class Home,Gallery,Collection,Profile mainNode;
-    classDef subNode fill:#FFF,stroke:#B22D24,color:#2A2A2A,font-size:15px,stroke-width:2px;
-    class H_Brand,H_Logic,G_Map,G_Node,C_StateA,C_StateB,P_Archive,P_History,H_Choose subNode;
-    classDef leafNode fill:#FDFBF7,stroke:#A89060,color:#2A2A2A,font-size:13px,stroke-dasharray: 5 5;
-    class H_Reg,H_AI,H_Path,H_Prod,H_Life,G_AR,G_AR1,G_AR2,G_Multi,G_Audio,G_Game,G_Switch,G_Comp,C_Guide,C_Archive,C_Output,C_Data,C_Share leafNode;
-    classDef qaNode fill:#FFF5F5,stroke:#B22D24,color:#B22D24,font-size:14px,font-weight:bold,stroke-width:2px;
-    class G_QA qaNode;
-    classDef returnNode fill:#F0FFF4,stroke:#38A169,color:#2F855A,font-size:14px,font-weight:bold,stroke-width:2px;
-    class G_Return returnNode;
-    linkStyle default stroke:#B22D24,stroke-width:1.5px;
-                </pre>
-            </div>
-            <p class="mt-6 text-xs text-stone-400 text-center italic">系统全链路架构图：涵盖 01-04 核心业务模块与双轨叙事切换逻辑</p>
-        </section>
-
-        <!-- 02 用户流程 (User Flow) -->
-        <section id="flow" class="section-fade-in">
-            <div class="flex items-center gap-4 mb-16">
-                <span class="text-5xl serif italic text-[#B22D24]/20 font-bold">02</span>
-                <h2 class="text-3xl font-bold serif">用户流程 (User Flow)</h2>
-            </div>
-            <div class="grid lg:grid-cols-12 gap-10 items-start">
-                <div class="lg:col-span-8 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200 overflow-hidden text-center">
-                    <div class="flex justify-center items-center">
-                        <svg viewBox="0 0 800 1100" class="w-full h-auto max-h-[85vh]">
-                            <defs>
-                                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orientation="auto">
-                                    <polygon points="0 0, 10 3.5, 0 7" fill="#cbd5e1" />
-                                </marker>
-                            </defs>
-                            <g class="flow-node">
-                                <rect x="325" y="20" width="150" height="45" rx="22.5" fill="#f1f5f9" stroke="#cbd5e1" />
-                                <text x="400" y="48" text-anchor="middle" font-size="14" font-weight="bold">开始：身份注册</text>
-                                <line x1="400" y1="65" x2="400" y2="100" class="connector-line" />
-                            </g>
-                            <g class="flow-node">
-                                <path d="M400 100 L500 140 L400 180 L300 140 Z" class="decision-diamond" />
-                                <text x="400" y="138" text-anchor="middle" font-size="13" font-weight="bold">决策点 1</text>
-                                <text x="400" y="156" text-anchor="middle" font-size="12" fill="#64748b">身份智能判定 (AI)</text>
-                                <path d="M300 140 H200 V210" class="connector-line" />
-                                <text x="210" y="135" font-size="11" fill="#94a3b8">自主选择</text>
-                                <path d="M500 140 H600 V210" class="connector-line" />
-                                <text x="540" y="135" font-size="11" fill="#94a3b8">系统推荐</text>
-                            </g>
-                            <g class="flow-node">
-                                <rect x="125" y="210" width="150" height="50" class="process-rect" />
-                                <text x="200" y="240" text-anchor="middle" font-size="13">B. 用户自主选择</text>
-                                <rect x="525" y="210" width="150" height="50" class="process-rect" />
-                                <text x="600" y="240" text-anchor="middle" font-size="13">A. 接受系统推荐</text>
-                                <path d="M200 260 V290 H400" class="connector-line" marker-end="none" />
-                                <path d="M600 260 V290 H400" class="connector-line" marker-end="none" />
-                                <line x1="400" y1="290" x2="400" y2="320" class="connector-line" />
-                            </g>
-                            <g class="flow-node">
-                                <rect x="300" y="320" width="200" height="60" rx="8" fill="#fff" stroke="#B22D24" stroke-width="1.5" stroke-dasharray="4,2" />
-                                <text x="400" y="345" text-anchor="middle" font-size="14" font-weight="bold" fill="#B22D24">确定游览方向</text>
-                                <text x="400" y="365" text-anchor="middle" font-size="12" fill="#B22D24">(生产侧 / 生活侧)</text>
-                                <line x1="400" y1="380" x2="400" y2="420" class="connector-line" />
-                            </g>
-                            <g class="flow-node">
-                                <rect x="310" y="420" width="180" height="50" class="process-rect" />
-                                <text x="400" y="442" text-anchor="middle" font-size="13" font-weight="bold">进入 23 步骤交互地图</text>
-                                <text x="400" y="460" text-anchor="middle" font-size="11" fill="#64748b">(定位: 第17步-织)</text>
-                                <line x1="400" y1="470" x2="400" y2="500" class="connector-line" />
-                            </g>
-                            <g class="flow-node">
-                                <path d="M400 500 L500 540 L400 580 L300 540 Z" class="decision-diamond" />
-                                <text x="400" y="535" text-anchor="middle" font-size="13" font-weight="bold">决策点 2</text>
-                                <text x="400" y="555" text-anchor="middle" font-size="12" fill="#64748b">交互参与决策</text>
-                                <path d="M500 540 H650 V610" class="connector-line" />
-                                <text x="560" y="535" font-size="11" fill="#94a3b8">跳过任务</text>
-                                <rect x="575" y="610" width="150" height="40" rx="6" fill="#f8fafc" stroke="#cbd5e1" />
-                                <text x="650" y="635" text-anchor="middle" font-size="12">系统引导二次挽留</text>
-                                <path d="M650 650 V675 H400" class="connector-line" marker-end="" />
-                            </g>
-                            <g class="flow-node">
-                                <line x1="400" y1="580" x2="400" y2="610" class="connector-line" />
-                                <text x="408" y="595" font-size="11" fill="#94a3b8">参与体验</text>
-                                <rect x="280" y="610" width="240" height="80" class="feature-node" />
-                                <text x="400" y="640" text-anchor="middle" class="feature-text" font-size="16">核心功能: AR 扫描探索</text>
-                                <text x="400" y="665" text-anchor="middle" fill="#fee2e2" font-size="11">物理识别 -> 逻辑判定 -> 解锁成果</text>
-                                <line x1="400" y1="690" x2="400" y2="720" class="connector-line" />
-                            </g>
-                            <g class="flow-node">
-                                <path d="M400 720 L500 760 L400 800 L300 760 Z" class="decision-diamond" />
-                                <text x="400" y="755" text-anchor="middle" font-size="12" font-weight="bold">决策点 3</text>
-                                <text x="400" y="775" text-anchor="middle" font-size="11" fill="#64748b">视角切换 (双叙事)</text>
-                                <path d="M300 760 H180 V830" class="connector-line" />
-                                <text x="210" y="755" font-size="11" fill="#94a3b8">点击切换</text>
-                                <rect x="105" y="830" width="150" height="40" class="process-rect" />
-                                <text x="180" y="855" text-anchor="middle" font-size="12">浏览另一侧视角内容</text>
-                                <path d="M180 870 V890 H400" class="connector-line" marker-end="" />
-                                <line x1="400" y1="800" x2="400" y2="890" class="connector-line" />
-                            </g>
-                            <g class="flow-node">
-                                <rect x="320" y="890" width="160" height="45" rx="8" fill="#fff" stroke="#B22D24" stroke-width="2" />
-                                <text x="400" y="918" text-anchor="middle" font-size="14" font-weight="bold" fill="#B22D24">生成专属成衣卡片</text>
-                                <line x1="400" y1="935" x2="400" y2="960" class="connector-line" />
-                            </g>
-                            <g class="flow-node">
-                                <path d="M400 960 L500 990 L400 1020 L300 990 Z" class="decision-diamond" stroke-dasharray="2,2" />
-                                <text x="400" y="995" text-anchor="middle" font-size="11">决策点 4</text>
-                                <path d="M300 990 H250 V1030" class="connector-line" />
-                                <text x="200" y="1020" font-size="10" fill="#94a3b8">下载保存</text>
-                                <path d="M500 990 H550 V1030" class="connector-line" />
-                                <text x="560" y="1020" font-size="10" fill="#94a3b8">直接返回</text>
-                                <rect x="325" y="1040" width="150" height="45" rx="22.5" fill="#2A2A2A" />
-                                <text x="400" y="1068" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="bold">【我的物品】板块</text>
-                            </g>
-                        </svg>
+            
+            <div class="grid lg:grid-cols-3 gap-10 items-start text-left text-left text-left text-left">
+                <div class="lg:col-span-2 bg-white rounded-3xl p-8 shadow-sm border border-stone-200 text-left">
+                    <div class="relative w-full h-full overflow-hidden text-left">
+                        <img src="IA图.jpg" alt="信息架构总览" class="w-full h-auto object-contain rounded-xl">
                     </div>
                 </div>
-                <div class="lg:col-span-4 space-y-4 h-full flex flex-col justify-center text-left text-left">
+
+                <div class="space-y-6 text-left">
                     <div class="p-6 bg-white border-l-4 border-[#B22D24] rounded-r-2xl shadow-sm transition-all hover:translate-x-1">
-                        <h3 class="text-[#B22D24] font-bold text-sm mb-2 uppercase tracking-wider text-left">1. AI 智能分流</h3>
-                        <p class="text-xs text-stone-500 leading-relaxed text-left">减少初次进入的认知负荷，将 23 道复杂工序根据用户画像简化为个性化路线。</p>
+                        <h3 class="text-[#B22D24] font-bold text-sm mb-2 uppercase tracking-wider text-left text-left">01 主页模块</h3>
+                        <p class="text-xs text-stone-500 leading-relaxed text-left text-left text-left">数字化转译的起点。通过“身份注册”触发 AI 判定逻辑，智能分发导览路径。</p>
                     </div>
                     <div class="p-6 bg-white border-l-4 border-[#B22D24] rounded-r-2xl shadow-sm transition-all hover:translate-x-1">
-                        <h3 class="text-[#B22D24] font-bold text-sm mb-2 uppercase tracking-wider text-left">2. 沉浸式任务闭环</h3>
-                        <p class="text-xs text-stone-500 leading-relaxed text-left">以 AR 扫描作为物理与数字的桥梁，支持跳过机制以确保游览效率与体验灵活度。</p>
+                        <h3 class="text-[#B22D24] font-bold text-sm mb-2 uppercase tracking-wider text-left text-left text-left">02 展厅模块</h3>
+                        <p class="text-xs text-stone-500 leading-relaxed text-left text-left text-left text-left">核心交互场景。集成 AR 物理识别、音频讲解及双轨叙事切换。</p>
                     </div>
                     <div class="p-6 bg-white border-l-4 border-[#B22D24] rounded-r-2xl shadow-sm transition-all hover:translate-x-1">
-                        <h3 class="text-[#B22D24] font-bold text-sm mb-2 uppercase tracking-wider text-left">3. 数据资产沉淀</h3>
-                        <p class="text-xs text-stone-500 leading-relaxed text-left">基于交互数据的唯一性，将浏览过程转化为可保存的数字“成衣卡片”情感资产。</p>
+                        <h3 class="text-[#B22D24] font-bold text-sm mb-2 uppercase tracking-wider text-left text-left text-left text-left text-left">03 物品栏模块</h3>
+                        <p class="text-xs text-stone-500 leading-relaxed text-left text-left text-left text-left text-left">数据沉淀池。将交互数据转化为独一无二的数字“成衣卡片”。</p>
+                    </div>
+                    <div class="p-6 bg-white border-l-4 border-[#B22D24] rounded-r-2xl shadow-sm transition-all hover:translate-x-1 text-left text-left text-left">
+                        <h3 class="text-[#B22D24] font-bold text-sm mb-2 uppercase tracking-wider text-left text-left text-left text-left text-left text-left text-left">04 个人主页</h3>
+                        <p class="text-xs text-stone-500 leading-relaxed text-left text-left text-left text-left text-left text-left text-left text-left text-left">数字化成长档案。包含游览历史、收集成就，构建长效链接。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 03 低保真逻辑 (Wireframes) -->
-        <section id="logic" class="section-fade-in pt-20">
-            <div class="flex items-center gap-4 mb-10">
-                <span class="text-5xl serif italic text-[#B22D24]/20 font-bold">03</span>
-                <h2 class="text-3xl font-bold serif">低保真逻辑 (Wireframes)</h2>
+        <!-- 02 用户流程 (User Flow) -->
+        <section id="flow" class="section-fade-in text-left">
+            <div class="flex items-center gap-4 mb-16 text-left">
+                <span class="text-5xl serif italic text-[#B22D24]/20 font-bold text-left">02</span>
+                <h2 class="text-3xl font-bold serif text-left">用户流程 (User Flow)</h2>
             </div>
-            <div class="relative">
-                <div class="custom-scroll-x flex gap-8 pb-10 px-4">
-                    <div class="phone-mockup">
-                        <div class="phone-screen">
-                            <img src="1首页.jpg" alt="首页" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-[10px] text-stone-400 text-center mt-4 font-mono uppercase">01_COVER_FLOW</p>
+            <div class="grid lg:grid-cols-12 gap-10 items-start text-left text-left text-left">
+                <div class="lg:col-span-8 bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-stone-200 overflow-hidden text-center text-center text-center text-center text-center">
+                    <div class="flex justify-center items-center text-center text-center text-center text-center">
+                        <img src="用户路径图.jpg" alt="核心用户流程图" class="w-full h-auto max-h-[85vh] object-contain rounded-xl">
                     </div>
-                    <div class="phone-mockup">
-                        <div class="phone-screen">
-                            <img src="2问题回答.jpg" alt="问题回答" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-[10px] text-stone-400 text-center mt-4 font-mono uppercase">02_QUESTION_ACTION</p>
+                </div>
+                <div class="lg:col-span-4 space-y-4 h-full flex flex-col justify-center text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                    <div class="p-6 bg-white border-l-4 border-[#B22D24] rounded-r-2xl shadow-sm transition-all hover:translate-x-1 text-left text-left text-left">
+                        <h3 class="text-[#B22D24] font-bold text-sm mb-2 uppercase tracking-wider text-left text-left text-left text-left">1. AI 智能分流</h3>
+                        <p class="text-xs text-stone-500 leading-relaxed text-left text-left text-left text-left text-left text-left">减少初次进入的认知负荷，将 23 道复杂工序根据用户画像简化为个性化路线。</p>
                     </div>
-                    <div class="phone-mockup">
-                        <div class="phone-screen">
-                            <img src="3界面选择.jpg" alt="界面选择" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-[10px] text-stone-400 text-center mt-4 font-mono uppercase">03_IDENTITY_PICK</p>
+                    <div class="p-6 bg-white border-l-4 border-[#B22D24] rounded-r-2xl shadow-sm transition-all hover:translate-x-1 text-left text-left text-left text-left">
+                        <h3 class="text-[#B22D24] font-bold text-sm mb-2 uppercase tracking-wider text-left text-left text-left text-left text-left">2. 沉浸式任务闭环</h3>
+                        <p class="text-xs text-stone-500 leading-relaxed text-left text-left text-left text-left text-left text-left text-left">以 AR 扫描作为物理与数字的桥梁，支持跳过机制以确保游览效率与体验灵活度。</p>
                     </div>
-                    <div class="phone-mockup">
-                        <div class="phone-screen">
-                            <img src="4工序界面.jpg" alt="工序界面" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-[10px] text-stone-400 text-center mt-4 font-mono uppercase">04_PROCESS_VIEW</p>
-                    </div>
-                    <div class="phone-mockup">
-                        <div class="phone-screen">
-                            <img src="5工序界面 交互.jpg" alt="工序交互" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-[10px] text-stone-400 text-center mt-4 font-mono uppercase">05_INTERACTIVE_SCAN</p>
-                    </div>
-                    <div class="phone-mockup">
-                        <div class="phone-screen">
-                            <img src="6工序界面 交互.jpg" alt="工序讲解" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-[10px] text-stone-400 text-center mt-4 font-mono uppercase">06_AUDIO_GUIDE</p>
+                    <div class="p-6 bg-white border-l-4 border-[#B22D24] rounded-r-2xl shadow-sm transition-all hover:translate-x-1 text-left text-left text-left text-left text-left">
+                        <h3 class="text-[#B22D24] font-bold text-sm mb-2 uppercase tracking-wider text-left text-left text-left text-left text-left text-left">3. 数据资产沉淀</h3>
+                        <p class="text-xs text-stone-500 leading-relaxed text-left text-left text-left text-left text-left text-left text-left text-left">基于交互数据的唯一性，将浏览过程转化为可保存的数字“成衣卡片”情感资产。</p>
                     </div>
                 </div>
             </div>
-            <div class="mt-8 bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-sm">
-                <div class="grid md:grid-cols-4 divide-x divide-stone-100 text-left">
-                    <div class="p-8 space-y-3">
-                        <h4 class="font-bold text-[#B22D24] text-sm text-left">清晰的视觉反馈</h4>
-                        <p class="text-[11px] text-stone-500 leading-relaxed text-left">针对博物馆场景，按键采用高对比度设计，确保在各种光线下均清晰可见。</p>
-                    </div>
-                    <div class="p-8 space-y-3 text-left">
-                        <h4 class="font-bold text-[#B22D24] text-sm italic text-left">短促的交互路径</h4>
-                        <p class="text-[11px] text-stone-500 leading-relaxed text-left">遵循“三步触达”原则，减少层级深度，让用户迅速从现实切入数字解析。</p>
-                    </div>
-                    <div class="p-8 space-y-3 text-left">
-                        <h4 class="font-bold text-[#B22D24] text-sm italic text-left">零犹豫决策设计</h4>
-                        <p class="text-[11px] text-stone-500 leading-relaxed text-left">减少并列选择，通过强引导代替用户做主，降低停留思考的认知成本。</p>
-                    </div>
-                    <div class="p-8 space-y-3 text-left">
-                        <h4 class="font-bold text-[#B22D24] text-sm italic text-left">严格遵循 UI 规范</h4>
-                        <p class="text-[11px] text-stone-500 leading-relaxed text-left">对齐 8px 栅格系统，所有触控区域均符合主流移动端设计标准与人体工学。</p>
-                    </div>
+        </section>
+
+        <!-- 03 低保真逻辑 (Wireframes) - 尺寸已同步为 Mini -->
+        <section id="logic" class="section-fade-in pt-20 text-left">
+            <div class="flex items-center gap-4 mb-10 text-left">
+                <span class="text-5xl serif italic text-[#B22D24]/20 font-bold text-left">03</span>
+                <h2 class="text-3xl font-bold serif text-left">低保真逻辑 (Wireframes)</h2>
+            </div>
+            <div class="relative text-left">
+                <!-- 容器使用 Mini 模具以便视觉紧凑 -->
+                <div class="custom-scroll-x flex gap-8 pb-10 px-4 text-left">
+                    <div class="phone-mockup-mini text-left text-left text-left"><div class="phone-screen text-left text-left text-left"><img src="1首页.jpg" class="w-full h-full object-cover text-left text-left text-left"></div><p class="text-[9px] text-stone-400 text-center mt-4 font-mono uppercase text-center text-center">01_COVER</p></div>
+                    <div class="phone-mockup-mini text-left text-left text-left"><div class="phone-screen text-left text-left text-left"><img src="2问题回答.jpg" class="w-full h-full object-cover"></div><p class="text-[9px] text-stone-400 text-center mt-4 font-mono uppercase text-center text-center text-center">02_SURVEY</p></div>
+                    <div class="phone-mockup-mini text-left text-left text-left"><div class="phone-screen text-left text-left text-left"><img src="3界面选择.jpg" class="w-full h-full object-cover text-left text-left text-left text-left"></div><p class="text-[9px] text-stone-400 text-center mt-4 font-mono uppercase text-center text-center text-center text-center">03_SELECTION</p></div>
+                    <div class="phone-mockup-mini text-left text-left text-left text-left"><div class="phone-screen text-left text-left text-left text-left"><img src="4工序界面.jpg" class="w-full h-full object-cover text-left text-left text-left text-left text-left"></div><p class="text-[9px] text-stone-400 text-center mt-4 font-mono uppercase text-center text-center text-center text-center text-center">04_PROCESS</p></div>
+                    <div class="phone-mockup-mini text-left text-left text-left text-left text-left"><div class="phone-screen text-left text-left text-left text-left text-left"><img src="5工序界面 交互.jpg" class="w-full h-full object-cover text-left text-left text-left text-left text-left text-left"></div><p class="text-[9px] text-stone-400 text-center mt-4 font-mono uppercase text-center text-center text-center text-center text-center text-center">05_SCAN</p></div>
+                    <div class="phone-mockup-mini text-left text-left text-left text-left text-left text-left"><div class="phone-screen text-left text-left text-left text-left text-left text-left text-left"><img src="6工序界面 交互.jpg" class="w-full h-full object-cover text-left text-left text-left text-left text-left text-left text-left"></div><p class="text-[9px] text-stone-400 text-center mt-4 font-mono uppercase text-center text-center text-center text-center text-center text-center text-center text-center">06_GUIDE</p></div>
+                </div>
+            </div>
+            <div class="mt-8 bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-sm text-left">
+                <div class="grid md:grid-cols-4 divide-x divide-stone-100 text-left text-left text-left">
+                    <div class="p-8 space-y-3 text-left text-left text-left text-left text-left"><h4 class="font-bold text-[#B22D24] text-sm text-left text-left text-left text-left text-left">清晰的视觉反馈</h4><p class="text-[11px] text-stone-500 leading-relaxed text-left text-left text-left text-left text-left text-left">按键采用高对比度设计，确保在各种光线下清晰可见。</p></div>
+                    <div class="p-8 space-y-3 text-left text-left text-left text-left text-left text-left text-left"><h4 class="font-bold text-[#B22D24] text-sm italic text-left text-left text-left text-left text-left text-left text-left text-left">短促的交互路径</h4><p class="text-[11px] text-stone-500 leading-relaxed text-left text-left text-left text-left text-left text-left text-left text-left">遵循“三步触达”原则，减少层级深度。</p></div>
+                    <div class="p-8 space-y-3 text-left text-left text-left text-left text-left text-left text-left text-left text-left"><h4 class="font-bold text-[#B22D24] text-sm italic text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">零犹豫决策设计</h4><p class="text-[11px] text-stone-500 leading-relaxed text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">通过智能判定代替犹豫，降低认知成本。</p></div>
+                    <div class="p-8 space-y-3 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left"><h4 class="font-bold text-[#B22D24] text-sm italic text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">严格遵循 UI 规范</h4><p class="text-[11px] text-stone-500 leading-relaxed text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">对齐 8px 栅格系统，符合主流移动端标准。</p></div>
                 </div>
             </div>
         </section>
 
         <!-- 04 视觉语言 (Visual Design) -->
-        <section id="visual" class="section-fade-in pt-20">
-            <div class="flex items-center gap-4 mb-16">
-                <span class="text-5xl serif italic text-[#B22D24]/20 font-bold">04</span>
-                <h2 class="text-3xl font-bold serif">视觉语言 (Visual Design)</h2>
+        <section id="visual" class="section-fade-in pt-20 text-left">
+            <div class="flex items-center gap-4 mb-16 text-left">
+                <span class="text-5xl serif italic text-[#B22D24]/20 font-bold text-left text-left">04</span>
+                <h2 class="text-3xl font-bold serif text-left text-left">视觉语言 (Visual Design)</h2>
             </div>
-            <div class="space-y-24 text-left">
-                <div class="grid lg:grid-cols-2 gap-20">
-                    <div class="space-y-8">
-                        <p class="text-stone-600 leading-loose text-sm text-left">
+            <div class="space-y-24 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                <div class="grid lg:grid-cols-2 gap-20 text-left text-left text-left text-left text-left text-left text-left text-left">
+                    <div class="space-y-8 text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                        <p class="text-stone-600 leading-loose text-sm text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
                             我们将《耕织图》原画的<b>古典线条</b>与移动端<b>毛玻璃 UI 规范</b>相结合。提取“朱砂红”作为关键操作引导色，通过留白与宣纸质感建立起具有东方意蕴的数字化空间。
                         </p>
-                        <div class="grid grid-cols-5 gap-4 text-center">
-                            <div class="flex flex-col items-center">
-                                <div class="w-14 h-14 rounded-xl bg-[#AC2425] shadow-lg mb-2"></div>
-                                <span class="text-[10px] text-stone-400 font-bold text-center">朱砂 #AC2425</span>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <div class="w-14 h-14 rounded-xl bg-[#0B437C] shadow-lg mb-2"></div>
-                                <span class="text-[10px] text-stone-400 font-bold text-center">靛蓝 #0B437C</span>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <div class="w-14 h-14 rounded-xl bg-[#F8F3E7] border border-stone-200 mb-2"></div>
-                                <span class="text-[10px] text-stone-400 font-bold text-center">宣纸 #F8F3E7</span>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <div class="w-14 h-14 rounded-xl bg-[#DACFB5] shadow-lg mb-2"></div>
-                                <span class="text-[10px] text-stone-400 font-bold text-center">琥珀 #DACFB5</span>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <div class="w-14 h-14 rounded-xl bg-[#C3B38B] shadow-lg mb-2"></div>
-                                <span class="text-[10px] text-stone-400 font-bold text-center">金褐 #C3B38B</span>
-                            </div>
+                        <div class="grid grid-cols-5 gap-4 text-center text-center text-center text-center text-center">
+                            <div class="flex flex-col items-center text-center text-center text-center text-center text-center"><div class="w-14 h-14 rounded-xl bg-[#AC2425] shadow-lg mb-2 text-center text-center text-center text-center text-center text-center"></div><span class="text-[10px] text-stone-400 font-bold text-center text-center text-center text-center text-center text-center text-center">朱砂 #AC2425</span></div>
+                            <div class="flex flex-col items-center text-center text-center text-center text-center text-center text-center"><div class="w-14 h-14 rounded-xl bg-[#0B437C] shadow-lg mb-2 text-center text-center text-center text-center text-center text-center text-center"></div><span class="text-[10px] text-stone-400 font-bold text-center text-center text-center text-center text-center text-center text-center text-center">靛蓝 #0B437C</span></div>
+                            <div class="flex flex-col items-center text-center text-center text-center text-center text-center text-center text-center"><div class="w-14 h-14 rounded-xl bg-[#F8F3E7] border border-stone-200 mb-2 text-center text-center text-center text-center text-center text-center text-center text-center text-center"></div><span class="text-[10px] text-stone-400 font-bold text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">宣纸 #F8F3E7</span></div>
+                            <div class="flex flex-col items-center text-center text-center text-center text-center text-center text-center text-center text-center"><div class="w-14 h-14 rounded-xl bg-[#DACFB5] shadow-lg mb-2 text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center"></div><span class="text-[10px] text-stone-400 font-bold text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">琥珀 #DACFB5</span></div>
+                            <div class="flex flex-col items-center text-center text-center text-center text-center text-center text-center text-center text-center text-center"><div class="w-14 h-14 rounded-xl bg-[#C3B38B] shadow-lg mb-2 text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center"></div><span class="text-[10px] text-stone-400 font-bold text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">金褐 #C3B38B</span></div>
                         </div>
                     </div>
-                    <div class="flex flex-col justify-center text-left">
-                        <h4 class="serif font-bold text-lg mb-6 text-[#AC2425] text-left">字体标准 / Typography</h4>
-                        <div class="space-y-6 text-left">
-                            <div class="border-b border-stone-100 pb-2 text-left">
-                                <span class="serif font-medium text-[26px] block text-stone-800 text-left">Noto Serif SC / Medium / 26px</span>
-                                <span class="text-[10px] text-stone-400 uppercase tracking-widest text-left">用于主标题、画卷意境词</span>
+                    <div class="flex flex-col justify-center text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                        <h4 class="serif font-bold text-lg mb-6 text-[#AC2425] text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">字体标准 / Typography</h4>
+                        <div class="space-y-6 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                            <div class="border-b border-stone-100 pb-2 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                                <span class="serif font-medium text-[26px] block text-stone-800 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Noto Serif SC / Medium / 26px</span>
+                                <span class="text-[10px] text-stone-400 uppercase tracking-widest text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">用于主标题、画卷意境词</span>
                             </div>
-                            <div class="border-b border-stone-100 pb-2 text-left">
-                                <span class="serif font-medium text-[20px] block text-stone-800 text-left">Noto Serif SC / Medium / 20px</span>
-                                <span class="text-[10px] text-stone-400 uppercase tracking-widest text-left">用于重要交互按键</span>
+                            <div class="border-b border-stone-100 pb-2 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                                <span class="serif font-medium text-[20px] block text-stone-800 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Noto Serif SC / Medium / 20px</span>
+                                <span class="text-[10px] text-stone-400 uppercase tracking-widest text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">用于重要交互按键</span>
                             </div>
-                            <div class="border-b border-stone-100 pb-2 text-left">
-                                <span class="font-normal text-[14px] block text-stone-800 text-left">Noto Sans SC / Regular / 14px</span>
-                                <span class="text-[10px] text-stone-400 uppercase tracking-widest text-left">用于正文、导航辅助说明</span>
+                            <div class="border-b border-stone-100 pb-2 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                                <span class="font-normal text-[14px] block text-stone-800 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Noto Sans SC / Regular / 14px</span>
+                                <span class="text-[10px] text-stone-400 uppercase tracking-widest text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">用于正文、导航辅助说明</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- 交互组件展示部分 - 已针对项目对标优化 -->
-                <div class="bg-white/40 border border-stone-200 rounded-[3rem] p-12 shadow-inner">
-                    <h3 class="serif font-bold text-xl mb-10 text-center uppercase tracking-widest text-stone-700">交互组件展示 / Components</h3>
-                    <div class="grid md:grid-cols-3 gap-12">
-                        <!-- 确认按钮样式 -->
-                        <div class="space-y-8">
-                            <div class="space-y-6">
-                                <p class="text-[10px] font-bold text-stone-400 uppercase tracking-widest text-left">Buttons / 确认按钮</p>
-                                <div class="space-y-4">
-                                    <button class="w-full h-14 border border-stone-800 bg-white rounded-full flex items-center justify-center gap-2 group hover:bg-stone-50 transition-colors">
-                                        <span class="serif text-stone-800 text-[18px]">注册完成</span>
-                                        <svg class="w-5 h-5 text-stone-200" fill="currentColor" viewBox="0 0 24 24"><path d="M13.172 12l-5-5 1.414-1.414L16 12l-6.414 6.414L8.172 17l5-5z"/></svg>
-                                    </button>
-                                    <button class="w-full h-14 bg-[#DACFB5] rounded-full flex items-center justify-center gap-2 shadow-lg shadow-[#DACFB5]/20 group">
-                                        <span class="serif text-white text-[18px]">注册完成</span>
-                                        <svg class="w-5 h-5 text-white/60" fill="currentColor" viewBox="0 0 24 24"><path d="M13.172 12l-5-5 1.414-1.414L16 12l-6.414 6.414L8.172 17l5-5z"/></svg>
-                                    </button>
-                                </div>
+                <!-- 交互组件库升级 -->
+                <div class="bg-white/40 border border-stone-200 rounded-[3rem] p-12 shadow-inner text-center">
+                    <h3 class="serif font-bold text-xl mb-10 text-center uppercase tracking-widest text-stone-700 text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">交互组件库 / Component Kit</h3>
+                    <div class="grid md:grid-cols-3 gap-12 text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">
+                        <div class="space-y-8 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                            <div class="space-y-4">
+                                <p class="text-[10px] font-bold text-stone-400 uppercase tracking-widest text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Buttons / 注册确认</p>
+                                <button class="w-full h-14 bg-white border border-stone-800 rounded-full flex items-center justify-center gap-2 group hover:bg-stone-50 transition-all text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center"><span class="serif text-stone-800 text-[18px] text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">注册完成</span><svg class="w-5 h-5 text-stone-300" fill="currentColor" viewBox="0 0 24 24"><path d="M13.172 12l-5-5 1.414-1.414L16 12l-6.414 6.414L8.172 17l5-5z"/></svg></button>
+                                <button class="w-full h-14 bg-[#DACFB5] rounded-full flex items-center justify-center gap-2 shadow-lg shadow-[#DACFB5]/20 text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center"><span class="serif text-white text-[18px] text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">注册完成</span><svg class="w-5 h-5 text-white/70" fill="currentColor" viewBox="0 0 24 24"><path d="M13.172 12l-5-5 1.414-1.414L16 12l-6.414 6.414L8.172 17l5-5z"/></svg></button>
                             </div>
                         </div>
-                        <!-- 状态切换样式 -->
-                        <div class="space-y-6">
-                            <p class="text-[10px] font-bold text-stone-400 uppercase tracking-widest text-left">Status Toggle / 状态切换</p>
+                        <div class="space-y-6 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                            <p class="text-[10px] font-bold text-stone-400 uppercase tracking-widest text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Toggle / 双轨视角</p>
                             <div class="space-y-6">
-                                <div class="flex items-center w-full h-14 bg-white border border-stone-400 rounded-full overflow-hidden p-1">
-                                    <div class="flex-1 h-full bg-[#0B437C] text-white flex items-center justify-center rounded-full serif text-[14px]">生产侧</div>
-                                    <div class="flex-1 h-full text-stone-800 flex items-center justify-center serif text-[14px]">生活侧</div>
-                                </div>
-                                <div class="flex items-center w-full h-14 bg-white border border-stone-400 rounded-full overflow-hidden p-1">
-                                    <div class="flex-1 h-full text-stone-800 flex items-center justify-center serif text-[14px]">生产侧</div>
-                                    <div class="flex-1 h-full bg-[#AC2425] text-white flex items-center justify-center rounded-full gap-2 serif text-[14px]">
-                                        生活侧 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                                    </div>
-                                </div>
+                                <div class="flex items-center w-full h-14 bg-white border border-stone-400 rounded-full p-1"><div class="flex-1 h-full bg-[#0B437C] text-white flex items-center justify-center rounded-full serif text-[14px]">生产侧</div><div class="flex-1 h-full text-stone-800 flex items-center justify-center serif text-[14px]">生活侧</div></div>
+                                <div class="flex items-center w-full h-14 bg-white border border-stone-400 rounded-full p-1"><div class="flex-1 h-full text-stone-800 flex items-center justify-center serif text-[14px]">生产侧</div><div class="flex-1 h-full bg-[#AC2425] text-white flex items-center justify-center rounded-full gap-2 serif text-[14px]">生活侧 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div></div>
                             </div>
                         </div>
-                        <!-- 身份选择样式 -->
-                        <div class="space-y-6">
-                            <p class="text-[10px] font-bold text-stone-400 uppercase tracking-widest text-left text-left text-left text-left">Cards / 身份选择</p>
-                            <div class="p-6 bg-white border-2 border-stone-800 rounded-[2rem] flex flex-col items-center text-center relative overflow-hidden group">
-                                <div class="w-12 h-12 rounded-full border border-stone-200 flex items-center justify-center mb-4">
-                                    <svg class="w-6 h-6 text-stone-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                                </div>
-                                <h4 class="serif font-bold text-stone-800 text-[18px] mb-2">生活侧·叙事者</h4>
-                                <p class="text-[10px] text-stone-500 leading-relaxed mb-4">解构古画中的生活切片，感悟生产背后的社会情感。</p>
-                                <div class="flex gap-1">
-                                    <span class="text-[8px] text-stone-300 font-bold">#体验</span>
-                                    <span class="text-[8px] text-stone-300 font-bold">#生活逻辑</span>
-                                    <span class="text-[8px] text-stone-300 font-bold">#情感</span>
-                                </div>
+                        <div class="space-y-6 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                            <p class="text-[10px] font-bold text-stone-400 uppercase tracking-widest text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Selector / 身份卡片</p>
+                            <div class="p-6 bg-white border-2 border-stone-800 rounded-[2rem] flex flex-col items-center text-center shadow-xl text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">
+                                <div class="w-12 h-12 rounded-full border border-stone-200 flex items-center justify-center mb-4 text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center"><svg class="w-6 h-6 text-stone-800 text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg></div>
+                                <h4 class="serif font-bold text-stone-800 text-[18px] mb-2 text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">生活侧·叙事者</h4>
+                                <p class="text-[10px] text-stone-500 leading-relaxed mb-4 italic text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">解构生活切片，感悟情感共鸣。</p>
+                                <div class="flex gap-1 text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center"><span class="px-2 py-0.5 bg-stone-100 text-[8px] text-stone-400 rounded-full font-bold text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">#体验</span><span class="px-2 py-0.5 bg-stone-100 text-[8px] text-stone-400 rounded-full font-bold text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">#情感</span></div>
                             </div>
                         </div>
                     </div>
@@ -638,76 +388,39 @@ graph TD
             </div>
         </section>
 
-        <!-- 05 高保真展示 (Hi-Fi Display) -->
-        <section id="hifi" class="section-fade-in pt-20">
-            <div class="flex items-center gap-4 mb-10">
-                <span class="text-5xl serif italic text-[#B22D24]/20 font-bold">05</span>
-                <h2 class="text-3xl font-bold serif">高保真展示 (Hi-Fi Display)</h2>
+        <!-- 05 高保真展示 (Hi-Fi Display) - 拆分为两行且每行展示 5 个以实现 4.5 项视觉效果 -->
+        <section id="hifi" class="section-fade-in pt-20 text-left">
+            <div class="flex items-center gap-4 mb-16 text-left">
+                <span class="text-5xl serif italic text-[#B22D24]/20 font-bold text-left">05</span>
+                <h2 class="text-3xl font-bold serif text-left">高保真展示 (Hi-Fi Display)</h2>
             </div>
-            <div class="relative">
-                <div class="custom-scroll-x flex gap-8 pb-10 px-4">
-                    <div class="phone-mockup">
-                        <div class="phone-screen bg-[#F7F3EB] overflow-hidden">
-                            <img src="11首页.jpg" alt="11首页" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-[10px] text-stone-400 text-center mt-4 font-mono uppercase tracking-widest">01_Cover</p>
-                    </div>
-                    <div class="phone-mockup border-2 border-[#B22D24]/10">
-                        <div class="phone-screen bg-[#F7F3EB]">
-                            <img src="12界面选择.jpg" alt="12界面选择" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-[10px] text-stone-400 text-center mt-4 font-mono uppercase tracking-widest">02_Selection</p>
-                    </div>
-                    <div class="phone-mockup border-2 border-[#B22D24]/10">
-                        <div class="phone-screen bg-[#F7F3EB]">
-                            <img src="13问题回答.jpg" alt="13问题回答" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-[10px] text-stone-400 text-center mt-4 font-mono uppercase tracking-widest">03_Survey</p>
-                    </div>
-                    <div class="phone-mockup border-2 border-[#B22D24]/10">
-                        <div class="phone-screen bg-[#F7F3EB]">
-                            <img src="14工序界面 交互.jpg" alt="14工序界面 交互" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-[10px] text-stone-400 text-center mt-4 font-mono uppercase tracking-widest">04_Interaction_A</p>
-                    </div>
-                    <div class="phone-mockup border-2 border-[#B22D24]/10">
-                        <div class="phone-screen bg-[#F7F3EB]">
-                            <img src="15工序界面 交互.jpg" alt="15工序界面 交互" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-[10px] text-stone-400 text-center mt-4 font-mono uppercase tracking-widest">05_Interaction_B</p>
-                    </div>
-                    <div class="phone-mockup border-2 border-[#B22D24]/10">
-                        <div class="phone-screen bg-[#F7F3EB]">
-                            <img src="16工序界面2.jpg" alt="16工序界面2" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-[10px] text-stone-400 text-center mt-4 font-mono uppercase tracking-widest">06_Process_2</p>
-                    </div>
-                    <div class="phone-mockup border-2 border-[#B22D24]/10">
-                        <div class="phone-screen bg-stone-800">
-                            <img src="10工序界面.jpg" alt="10工序界面" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-[10px] text-stone-400 text-center mt-4 font-mono uppercase tracking-widest">07_Asset</p>
-                    </div>
+            
+            <div class="space-y-12">
+                <!-- 第一行 -->
+                <div class="custom-scroll-x flex gap-6 px-4 text-left">
+                    <div class="phone-mockup-mini"><div class="phone-screen text-left"><img src="11首页.jpg" class="w-full h-full object-cover"></div><p class="text-[9px] text-stone-400 text-center mt-3 font-mono uppercase">01_Cover</p></div>
+                    <div class="phone-mockup-mini"><div class="phone-screen"><img src="12界面选择.jpg" class="w-full h-full object-cover"></div><p class="text-[9px] text-stone-400 text-center mt-3 font-mono uppercase">02_Selection</p></div>
+                    <div class="phone-mockup-mini"><div class="phone-screen"><img src="13问题回答.jpg" class="w-full h-full object-cover"></div><p class="text-[9px] text-stone-400 text-center mt-3 font-mono uppercase">03_Survey</p></div>
+                    <div class="phone-mockup-mini"><div class="phone-screen"><img src="14工序界面 交互.jpg" class="w-full h-full object-cover"></div><p class="text-[9px] text-stone-400 text-center mt-3 font-mono uppercase">04_Interaction_A</p></div>
+                    <div class="phone-mockup-mini"><div class="phone-screen"><img src="15工序界面 交互.jpg" class="w-full h-full object-cover"></div><p class="text-[9px] text-stone-400 text-center mt-3 font-mono uppercase">05_Interaction_B</p></div>
+                </div>
+
+                <!-- 第二行 -->
+                <div class="custom-scroll-x flex gap-6 px-4 text-left">
+                    <div class="phone-mockup-mini"><div class="phone-screen"><img src="16工序界面2.jpg" class="w-full h-full object-cover"></div><p class="text-[9px] text-stone-400 text-center mt-3 font-mono uppercase">06_Process</p></div>
+                    <div class="phone-mockup-mini"><div class="phone-screen"><img src="9展厅总览.jpg" class="w-full h-full object-cover"></div><p class="text-[9px] text-stone-400 text-center mt-3 font-mono uppercase">07_Overview</p></div>
+                    <div class="phone-mockup-mini"><div class="phone-screen"><img src="17 物品界面.jpg" class="w-full h-full object-cover"></div><p class="text-[9px] text-stone-400 text-center mt-3 font-mono uppercase">08_Inventory</p></div>
+                    <div class="phone-mockup-mini"><div class="phone-screen"><img src="18工序界面.jpg" class="w-full h-full object-cover"></div><p class="text-[9px] text-stone-400 text-center mt-3 font-mono uppercase">09_Process_Detail</p></div>
+                    <div class="phone-mockup-mini"><div class="phone-screen"><img src="10工序界面.jpg" class="w-full h-full object-cover"></div><p class="text-[9px] text-stone-400 text-center mt-3 font-mono uppercase">10_Asset</p></div>
                 </div>
             </div>
-            <div class="mt-8 bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-sm">
+
+            <div class="mt-12 bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-sm text-left">
                 <div class="grid md:grid-cols-4 divide-x divide-stone-100 text-left">
-                    <div class="p-8 space-y-3">
-                        <h4 class="font-bold text-[#B22D24] text-sm italic text-left">色彩一致性</h4>
-                        <p class="text-[11px] text-stone-500 leading-relaxed text-left">严格遵循古籍色彩规范，建立生产理性与生活感性的二元功能分级体系。</p>
-                    </div>
-                    <div class="p-8 space-y-3 text-left">
-                        <h4 class="font-bold text-[#B22D24] text-sm italic text-left">古画沉浸感</h4>
-                        <p class="text-[11px] text-stone-500 leading-relaxed text-left">利用宣纸纹理与平滑转场，营造“翻阅古籍、行走画间”的诗意数字化体验。</p>
-                    </div>
-                    <div class="p-8 space-y-3 text-left">
-                        <h4 class="font-bold text-[#B22D24] text-sm italic text-left">数字化重构</h4>
-                        <p class="text-[11px] text-stone-500 leading-relaxed text-left">将传统平面美学与现代 UI 的毛玻璃、微阴影技术融合，提升信息传递效率。</p>
-                    </div>
-                    <div class="p-8 space-y-3 text-left">
-                        <h4 class="font-bold text-[#B22D24] text-sm italic text-left">情感化叙事</h4>
-                        <p class="text-[11px] text-stone-500 leading-relaxed text-left">将枯燥的工序拆解为可感知的交互单元，建立用户与历史文化的深度情感共鸣。</p>
-                    </div>
+                    <div class="p-8 space-y-3 text-left"><h4 class="font-bold text-[#B22D24] text-sm italic text-left text-left">色彩一致性</h4><p class="text-[11px] text-stone-500 leading-relaxed text-left text-left">遵循古籍色彩规范，建立生产理性与生活感性的二元功能分级体系。</p></div>
+                    <div class="p-8 space-y-3 text-left"><h4 class="font-bold text-[#B22D24] text-sm italic text-left text-left">古画沉浸感</h4><p class="text-[11px] text-stone-500 leading-relaxed text-left text-left text-left">利用宣纸纹理与平滑转场，营造“翻阅古籍、行走画间”的诗意体验。</p></div>
+                    <div class="p-8 space-y-3 text-left"><h4 class="font-bold text-[#B22D24] text-sm italic text-left">数字化重构</h4><p class="text-[11px] text-stone-500 leading-relaxed text-left text-left text-left">将传统平面美学与现代 UI 技术融合，提升信息传递效率。</p></div>
+                    <div class="p-8 space-y-3 text-left"><h4 class="font-bold text-[#B22D24] text-sm italic text-left text-left">情感化叙事</h4><p class="text-[11px] text-stone-500 leading-relaxed text-left text-left text-left">将枯燥工序拆解为可感知的情感单元，建立用户与历史文化的共鸣。</p></div>
                 </div>
             </div>
         </section>
@@ -715,30 +428,27 @@ graph TD
         <!-- 06 项目演示 (Showcase Video) -->
         <section id="demo" class="section-fade-in bg-stone-900 rounded-[4rem] p-10 md:p-24 text-white overflow-hidden relative">
             <div class="absolute top-0 right-0 w-96 h-96 bg-[#B22D24]/10 rounded-full blur-[100px]"></div>
-            <div class="max-w-5xl mx-auto relative z-10 text-center text-center">
-                <span class="text-[#B22D24] font-bold tracking-[0.4em] mb-4 uppercase block text-center text-center">PROJECT SHOWCASE</span>
-                <h2 class="serif text-4xl font-bold mb-8 italic text-white text-center text-center">项目展示视频</h2>
-                <p class="text-stone-400 mb-12 text-sm max-w-2xl mx-auto leading-loose text-center text-center">
+            <div class="max-w-5xl mx-auto relative z-10 text-center">
+                <span class="text-[#B22D24] font-bold tracking-[0.4em] mb-4 uppercase block text-center">PROJECT SHOWCASE</span>
+                <h2 class="serif text-4xl font-bold mb-8 italic text-white text-center">项目展示视频</h2>
+                <p class="text-stone-400 mb-12 text-sm max-w-2xl mx-auto leading-loose text-center">
                     本视频详细展示了《耕织图》智慧博物馆从“入画注册”到“数字资产生成”的全过程闭环。通过 23 个工序节点的数字化解构，实现了多模态的深度沉浸体验。
                 </p>
-                
                 <div class="relative w-full aspect-video bg-black rounded-[2rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] border border-white/10 group text-center text-center">
                     <video class="w-full h-full object-cover" controls>
                         <source src="gengzhituzuizhong.mp4" type="video/mp4">
-                        您的浏览器不支持视频播放。
                     </video>
-                    <div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/40 to-transparent opacity-60 text-center text-center"></div>
+                    <div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/40 to-transparent opacity-60 text-center text-center text-center text-center text-center"></div>
                 </div>
-                
-                <div class="mt-12 flex justify-center gap-10 text-center text-center">
-                    <div class="flex flex-col items-center text-center text-center">
-                        <span class="text-[#B22D24] font-bold text-2xl mb-1 serif text-center text-center">100%</span>
-                        <span class="text-[10px] text-stone-500 uppercase tracking-widest font-bold text-center text-center">Closed Loop</span>
+                <div class="mt-12 flex justify-center gap-10 text-center text-center text-center text-center text-center text-center">
+                    <div class="flex flex-col items-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">
+                        <span class="text-[#B22D24] font-bold text-2xl mb-1 serif text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">100%</span>
+                        <span class="text-[10px] text-stone-500 uppercase tracking-widest font-bold text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">Closed Loop</span>
                     </div>
-                    <div class="w-px h-10 bg-white/10 text-center text-center"></div>
-                    <div class="flex flex-col items-center text-center text-center">
-                        <span class="text-[#B22D24] font-bold text-2xl mb-1 serif text-center text-center">4K</span>
-                        <span class="text-[10px] text-stone-500 uppercase tracking-widest font-bold text-center text-center">Resolution</span>
+                    <div class="w-px h-10 bg-white/10 text-center text-center text-center text-center text-center text-center text-center text-center text-center"></div>
+                    <div class="flex flex-col items-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">
+                        <span class="text-[#B22D24] font-bold text-2xl mb-1 serif text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">4K</span>
+                        <span class="text-[10px] text-stone-500 uppercase tracking-widest font-bold text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center text-center">Resolution</span>
                     </div>
                 </div>
             </div>
@@ -746,18 +456,18 @@ graph TD
 
     </main>
 
-    <footer class="bg-stone-900 text-stone-600 py-32 px-10 text-left text-left">
+    <footer class="bg-stone-900 text-stone-600 py-32 px-10 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-20">
-            <div class="text-center md:text-left text-left text-left">
-                <h3 class="serif text-4xl text-white mb-4 tracking-widest uppercase font-bold text-white uppercase text-left text-left">ZHANG XINQIAN</h3>
-                <p class="text-sm text-stone-500 text-left text-left">UX / Product Designer</p>
-                <div class="mt-10 flex gap-12 text-xs font-bold tracking-widest uppercase text-stone-400 text-left text-left">
-                    <p class="hover:text-white transition-colors cursor-pointer text-left text-left">Behance</p>
-                    <p class="hover:text-white transition-colors cursor-pointer text-left text-left">LinkedIn</p>
-                    <p class="hover:text-white transition-colors cursor-pointer text-left text-left">Email</p>
+            <div class="text-center md:text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                <h3 class="serif text-4xl text-white mb-4 tracking-widest uppercase font-bold text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">ZHANG XINQIAN</h3>
+                <p class="text-sm text-stone-500 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">UX / Product Designer</p>
+                <div class="mt-10 flex gap-12 text-xs font-bold tracking-widest uppercase text-stone-400 text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">
+                    <p class="hover:text-white transition-colors cursor-pointer text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Behance</p>
+                    <p class="hover:text-white transition-colors cursor-pointer text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">LinkedIn</p>
+                    <p class="hover:text-white transition-colors cursor-pointer text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">Email</p>
                 </div>
             </div>
-            <div class="text-[10px] opacity-20 text-center md:text-right tracking-widest uppercase text-stone-600 text-right">
+            <div class="text-[10px] opacity-20 text-center md:text-right tracking-widest uppercase text-stone-600 text-right text-right text-right text-right text-right text-right text-right text-right text-right text-right text-right text-right">
                 © 2026 DESIGNED WITH SOUL AND PIXELS. ALL RIGHTS RESERVED.
             </div>
         </div>
